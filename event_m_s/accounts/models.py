@@ -27,8 +27,8 @@ class User(AbstractUser):
     role = models.CharField(max_length=20,choices=ROLE_CHOICES)
     
     
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ('first_name', 'last_name', 'email', 'password' )
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ('first_name', 'last_name', 'username', 'password' )
     
     
     class Meta:

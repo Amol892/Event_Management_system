@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'accounts',
-    'phonenumber_field'
+    'phonenumber_field',
+    'rest_framework_simplejwt'
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 
+# JWTAuthentication token life config
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME' : timedelta(weeks=1),
+    'REFRESH_TOKEN_LIFETIME' : timedelta(weeks=2),
+    'AUTH_HEADER_TYPES' : ('Bearer', 'JWT')
+}
