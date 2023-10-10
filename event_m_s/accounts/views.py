@@ -6,6 +6,7 @@ from rest_framework import status
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from .utils import detectUser
+from django.contrib.auth import update_session_auth_hash
 # Create your views here.
 
 
@@ -60,3 +61,20 @@ class LogoutAPI(APIView):
             return Response(data={'message':'Token is invalid or expired'}, status=status.HTTP_400_BAD_REQUEST)
     
         
+
+class ChangePasswordAPI(APIView):
+    
+    def post(self,request,pk=None):
+        serializer = ChangePasswordSerializer(data=request.data)
+        if serializer.is_valid():
+            user = User.objects.get(pk=pk)
+            old_password = serializer.data.get('old_password')
+            new_password = serializer.data.get('new_password')
+            
+            if user.check_password(old_password):
+                user.set_password(new_password)
+                user.save()
+                update_session_auth_hash(request,user)
+                return Response(data={'message':'Your password is changed successfully'}, status=status.HTTP_200_OK)
+            return Response(data={'message':'old_password is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)

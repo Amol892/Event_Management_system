@@ -8,6 +8,7 @@ urlpatterns = [
     path('register/',RegisterAPI.as_view()),
     path('login/', LoginAPI.as_view()),
     path('logout/',LogoutAPI.as_view()),
+    path('changepassword/<int:pk>/',ChangePasswordAPI.as_view()),
 ]
 
 if settings.DEBUG:
