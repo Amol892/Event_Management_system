@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'accounts',
     'phonenumber_field',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
+    
 ]
 
 MIDDLEWARE = [
@@ -139,7 +141,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # JWTAuthentication token life config
 from datetime import timedelta
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME' : timedelta(weeks=1),
+    'ACCESS_TOKEN_LIFETIME' : timedelta(hours=1),
     'REFRESH_TOKEN_LIFETIME' : timedelta(weeks=2),
     'AUTH_HEADER_TYPES' : ('Bearer', 'JWT')
 }

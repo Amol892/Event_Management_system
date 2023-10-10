@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from .utils import detectUser
 # Create your views here.
 
@@ -43,4 +44,19 @@ class LoginAPI(TokenObtainPairView):
                 return Response(data={'message':'Invalid email id'})
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
+        
+class LogoutAPI(APIView):
+    
+    def post(sef,request):
+        print(request.data)
+        try:
+            refresh_token = request.data['refresh']  # refresh is used as key for refresh token, which is included in request body.
+            token = RefreshToken(refresh_token)
+            print(token)
+            token.blacklist()
+            
+            return Response(data = {'message':'your account is successfully logouted'},status=status.HTTP_205_RESET_CONTENT)
+        except TokenError:
+            return Response(data={'message':'Token is invalid or expired'}, status=status.HTTP_400_BAD_REQUEST)
+    
         
