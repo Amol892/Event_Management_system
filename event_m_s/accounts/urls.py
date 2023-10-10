@@ -9,6 +9,8 @@ urlpatterns = [
     path('login/', LoginAPI.as_view()),
     path('logout/',LogoutAPI.as_view()),
     path('changepassword/<int:pk>/',ChangePasswordAPI.as_view()),
+    path('forgotpassword/',ForgotPasswordAPI.as_view()),
+    path('resetpassword/',ResetPasswordAPI.as_view()),
 ]
 
 if settings.DEBUG:

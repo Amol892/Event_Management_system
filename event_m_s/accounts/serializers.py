@@ -24,4 +24,13 @@ class LoginSerializer(serializers.Serializer):
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
+
+# forgot password serializer
+class ForgotPasswordSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+# reset password serializer
+class ResetPasswordSerializer(serializers.Serializer):
+    input_otp = serializers.CharField(required=True)
+    reset_password = serializers.CharField(required=True)
     

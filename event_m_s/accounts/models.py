@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
+import random
 # Create your models here.
 
 
@@ -38,3 +39,12 @@ class User(AbstractUser):
     def get_full_name(self):
         return self.first_name+" "+self.last_name
     
+class OTPModel(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    otp = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    
+    def generate_otp(self):
+        self.otp = random.randint(100000,999999)
+        
