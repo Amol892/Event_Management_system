@@ -17,4 +17,11 @@ class Event(models.Model):
     def __str__(self):
         return self.user.get_full_name()
     
+class Invitation(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
     
+    
+    def __str__(self):
+        return self.user.email

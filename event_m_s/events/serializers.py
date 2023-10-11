@@ -10,4 +10,8 @@ class EventModelSerializer(serializers.ModelSerializer):
         
         
         
-        
+class InvitationModelSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Invitation
+        fields ='__all__'

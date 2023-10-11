@@ -1,5 +1,5 @@
 import django_filters
-from .models import Event
+from .models import Event, Invitation
 
 
 class EventFilter(django_filters.FilterSet):
@@ -12,5 +12,14 @@ class EventFilter(django_filters.FilterSet):
                 'event_date':['exact'],
                 'city':['iexact','icontains'],
                 'event_name':['iexact','icontains'],
+                'user':['exact']
+                  }
+        
+        
+class InvitationFilter(django_filters.FilterSet):
+    class Meta:
+        model = Invitation
+        fields = {
+                'event':['exact'],
                 'user':['exact']
                   }
