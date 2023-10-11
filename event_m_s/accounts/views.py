@@ -14,7 +14,7 @@ from .models import *
 
 
 # RegisterationView
-class RegisterAPI(APIView):
+class RegisterAPIView(APIView):
     
     def post(self,request):
         serializer = UserModelSerializer(data=request.data)
@@ -26,7 +26,7 @@ class RegisterAPI(APIView):
 
 
 # User Login View
-class LoginAPI(TokenObtainPairView):
+class LoginAPIView(TokenObtainPairView):
     
     def post(self,request):
         serializer = LoginSerializer(data=request.data)
@@ -51,7 +51,7 @@ class LoginAPI(TokenObtainPairView):
         
         
 # User Logout View
-class LogoutAPI(APIView):
+class LogoutAPIView(APIView):
     
     def post(sef,request):
         print(request.data)
@@ -67,7 +67,7 @@ class LogoutAPI(APIView):
     
         
 # Password change View
-class ChangePasswordAPI(APIView):
+class ChangePasswordAPIView(APIView):
     
     def post(self,request,pk=None):
         serializer = ChangePasswordSerializer(data=request.data)
@@ -86,7 +86,7 @@ class ChangePasswordAPI(APIView):
 
     
 # Forgot password and OTP generation and sending to registered email
-class ForgotPasswordAPI(APIView):
+class ForgotPasswordAPIView(APIView):
     
     def post(self,request):
         
@@ -116,7 +116,7 @@ class ForgotPasswordAPI(APIView):
 
 
 # Reset password View
-class ResetPasswordAPI(APIView):
+class ResetPasswordAPIView(APIView):
     
     def post(self,request):
         serializer = ResetPasswordSerializer(data=request.data)

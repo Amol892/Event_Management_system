@@ -5,12 +5,12 @@ from django.conf.urls.static import static
 from rest_framework_simplejwt.views import TokenBlacklistView
 
 urlpatterns = [
-    path('register/',RegisterAPI.as_view()),
-    path('login/', LoginAPI.as_view()),
-    path('logout/',LogoutAPI.as_view()),
-    path('changepassword/<int:pk>/',ChangePasswordAPI.as_view()),
-    path('forgotpassword/',ForgotPasswordAPI.as_view()),
-    path('resetpassword/',ResetPasswordAPI.as_view()),
+    path('register/',RegisterAPIView.as_view()),
+    path('login/', LoginAPIView.as_view()),
+    path('logout/',LogoutAPIView.as_view()),
+    path('changepassword/<int:pk>/',ChangePasswordAPIView.as_view()),
+    path('forgotpassword/',ForgotPasswordAPIView.as_view()),
+    path('resetpassword/',ResetPasswordAPIView.as_view()),
 ]
 
 if settings.DEBUG:

@@ -18,10 +18,20 @@ from django.contrib import admin
 from django.urls import path,include 
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework import routers
+from events.views import *
+
+router = routers.DefaultRouter()
+
+# Event list Rout
+router.register('event_list',EventListViewsetAPI,basename='event_list') 
+router.register('event_crud',EventViewSetAPI,basename='event_crud')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/',include('accounts.urls'))
+    path('accounts/',include('accounts.urls')),
+    path('events/',include(router.urls)),
+    
 ]
 
 if settings.DEBUG:

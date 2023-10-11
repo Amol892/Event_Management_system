@@ -48,3 +48,6 @@ class OTPModel(models.Model):
     def generate_otp(self):
         self.otp = random.randint(100000,999999)
         
+    def __str__(self):
+        return self.user
+        
