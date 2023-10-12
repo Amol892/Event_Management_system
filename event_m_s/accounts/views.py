@@ -11,6 +11,8 @@ from django.contrib.auth import update_session_auth_hash
 from django.conf import settings
 from django.core.mail import send_mail
 from .models import *
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 # RegisterationView
@@ -52,7 +54,8 @@ class LoginAPIView(TokenObtainPairView):
         
 # User Logout View
 class LogoutAPIView(APIView):
-    
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated,]
     def post(sef,request):
         print(request.data)
         try:
@@ -68,7 +71,8 @@ class LogoutAPIView(APIView):
         
 # Password change View
 class ChangePasswordAPIView(APIView):
-    
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated,]
     def post(self,request,pk=None):
         serializer = ChangePasswordSerializer(data=request.data)
         if serializer.is_valid():
